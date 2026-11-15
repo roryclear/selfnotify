@@ -640,7 +640,7 @@ def b64urldecode(data):
   padded = data.replace(b"+", b"-").replace(b"/", b"_") + b"===="[len(data) % 4 :]
   return base64.urlsafe_b64decode(padded)
 
-def aes_encrypt(content, headers=None):
+def aes_encrypt(content):
   with open("notify_keys/keys.json") as f: subscription_info = json.load(f)
   receiver_key = b64urldecode(subscription_info["keys"]["p256dh"].encode("ascii"))
   auth_key = b64urldecode(subscription_info["keys"]["auth"].encode("ascii"))

@@ -640,14 +640,14 @@ def b64urldecode(data):
   padded = data.replace(b"+", b"-").replace(b"/", b"_") + b"===="[len(data) % 4 :]
   return base64.urlsafe_b64decode(padded)
 
-def aes_encrypt(content):
-  with open("notify_keys/keys.json") as f: subscription_info = json.load(f)
+def aes_encrypt(content, keys="keys.json", vapid_private="vapid_private.pem"):
+  with open(f"notify_keys/{keys}") as f: subscription_info = json.load(f)
   receiver_key = b64urldecode(subscription_info["keys"]["p256dh"].encode("ascii"))
   auth_key = b64urldecode(subscription_info["keys"]["auth"].encode("ascii"))
   endpoint = subscription_info["endpoint"]
   url = urlparse(endpoint)
   vapid_claims = {"sub": "mailto:hello@clearcam.org", "aud": f"{url.scheme}://{url.netloc}"}
-  with open("notify_keys/vapid_private.pem", "rb") as f: vv = import_key(f.read())
+  with open(f"notify_keys/{vapid_private}", "rb") as f: vv = import_key(f.read())
 
   token = copy.deepcopy(vapid_claims)
   token["exp"] = int(time.time()) + 86400

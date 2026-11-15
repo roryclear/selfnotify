@@ -1024,9 +1024,9 @@ class CtrMode:
       return bytes(a ^ b for a, b in zip(data, ks))
 
 
-def send(title="Notif", body="Hello there"):
+def send(title="Notif", body="Hello there", keys="keys.json", vapid_private="vapid_private.pem"):
   data = json.dumps({"title": title, "body": body,}).encode("utf8")
-  encoded_data, headers, endpoint = aes_encrypt(data)
+  encoded_data, headers, endpoint = aes_encrypt(data, keys=keys, vapid_private=vapid_private)
   req = urllib.request.Request(url=endpoint, data=encoded_data, headers=headers, method="POST",)
   with urllib.request.urlopen(req, timeout=30) as response:
     print("HTTP status:", response.status)

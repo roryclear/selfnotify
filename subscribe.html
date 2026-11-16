@@ -33,15 +33,19 @@
 </div>
 
 <script>
-  const isStandalone =
-    window.navigator.standalone === true ||
-    window.matchMedia("(display-mode: standalone)").matches;
+const isIOS =
+  /iPhone|iPad|iPod/.test(navigator.userAgent) ||
+  (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 
-  if (isStandalone) {
-    document.querySelector("#setup").style.display = "block";
-  } else {
-    document.querySelector("#installMessage").style.display = "block";
-  }
+const isStandalone =
+  navigator.standalone === true ||
+  window.matchMedia("(display-mode: standalone)").matches;
+
+if (isIOS && !isStandalone) {
+  document.querySelector("#installMessage").style.display = "block";
+} else {
+  document.querySelector("#setup").style.display = "block";
+}
 </script>
 
 <script>

@@ -23,6 +23,8 @@ print(vapid_public_key)
 ### 3. paste the key into this webpage
 https://roryclear.github.io/selfnotify/subscribe.html
 
+(for iOS you must add the webpage to your home screen first)
+
 ### 4. get keys and allow notifications
 
 ### 5. copy keys.json to the notify_keys folder

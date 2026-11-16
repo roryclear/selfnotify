@@ -13,18 +13,37 @@
 </head>
 <body>
 
+<style>
+  #setup {
+    padding-top: 25px;
+  }
+
+  #vapidKey {
+    display: block;
+    width: 90%;
+    max-width: 900px;
+    height: 55px;
+    margin-top: 12px;
+    padding: 10px;
+    font-size: 15px;
+    box-sizing: border-box;
+  }
+
+  #subscribe {
+    margin-top: 15px;
+  }
+</style>
+
 <div id="setup" style="display: none;">
-  <label for="vapidKey">VAPID public key</label>
-  <input
+  <label for="vapidKey">VAPID public key:</label>
+  <textarea
     id="vapidKey"
-    type="text"
-    size="90"
     autocomplete="off"
     spellcheck="false"
     placeholder="Paste the base64url public key here (87 chars, starts with B)"
-  />
-  <br />
-  <button id="subscribe">Get Notifications</button>
+  ></textarea>
+
+  <button id="subscribe">Get Keys</button>
   <pre id="output"></pre>
 </div>
 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,28 +12,36 @@
   <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
 </head>
 <body>
-<label for="vapidKey">VAPID public key</label>
-<input
-  id="vapidKey"
-  type="text"
-  size="90"
-  autocomplete="off"
-  spellcheck="false"
-  placeholder="Paste the base64url public key here (87 chars, starts with B)"
-/>
-<br />
-<button id="subscribe">Get Notifications</button>
-<pre id="output"></pre>
+
+<div id="setup" style="display: none;">
+  <label for="vapidKey">VAPID public key</label>
+  <input
+    id="vapidKey"
+    type="text"
+    size="90"
+    autocomplete="off"
+    spellcheck="false"
+    placeholder="Paste the base64url public key here (87 chars, starts with B)"
+  />
+  <br />
+  <button id="subscribe">Get Notifications</button>
+  <pre id="output"></pre>
+</div>
+
+<div id="installMessage" style="display: none;">
+  Please add this page to your home screen to set up notifications.
+</div>
 
 <script>
-  const diag =
-    "isSecureContext: " + isSecureContext + "\n" +
-    "serviceWorker in navigator: " + ("serviceWorker" in navigator) + "\n" +
-    "PushManager in window: " + ("PushManager" in window) + "\n" +
-    "Notification in window: " + ("Notification" in window) + "\n" +
-    "origin: " + location.origin + "\n" +
-    "standalone (iOS): " + (window.navigator.standalone ?? "n/a");
-  alert(diag);
+  const isStandalone =
+    window.navigator.standalone === true ||
+    window.matchMedia("(display-mode: standalone)").matches;
+
+  if (isStandalone) {
+    document.querySelector("#setup").style.display = "block";
+  } else {
+    document.querySelector("#installMessage").style.display = "block";
+  }
 </script>
 
 <script>
@@ -56,7 +65,6 @@
     document.body.appendChild(a);
     a.click();
     a.remove();
-    // Give the browser a moment to start the download before revoking.
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
@@ -98,5 +106,6 @@
     }
   };
 </script>
+
 </body>
 </html>

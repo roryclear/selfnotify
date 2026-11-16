@@ -1,6 +1,6 @@
 
 # Self Notify
-
+![Notification preview](images/notif.png)
 ## Setup:
 ### 1. clone the repo and build
 ```

@@ -20,7 +20,7 @@ vapid_public_key = selfnotify.keygen()
 print(vapid_public_key)
 ```
 
-### 3. paste the key into this webpage
+### 3. paste the key into this webpage (device that will receive notifications)
 https://roryclear.github.io/selfnotify/subscribe.html
 
 - for iOS you must add the webpage to your home screen first

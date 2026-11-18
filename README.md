@@ -28,7 +28,7 @@ https://roryclear.github.io/selfnotify/subscribe.html
 
 ### 4. get keys and allow notifications
 
-### 5. copy keys.json to the notify_keys folder
+### 5. copy keys.json to the notify_keys folder (device that will send notifications)
 
 ### 6. send yourself a notification
 ```
